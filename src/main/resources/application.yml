@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: st-zuul-server
+    
+server:
+  port: 8089
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+      
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+            
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 10000
