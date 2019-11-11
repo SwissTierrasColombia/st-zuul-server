@@ -33,10 +33,29 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/api/security/oauth/**").permitAll()
-				.antMatchers(HttpMethod.POST, "/api/ili/ili2pg/schema-import").permitAll()
-				.antMatchers(HttpMethod.POST, "/api/ili/ilivalidator/validate").hasRole("ADMINISTRADOR_SISTEMA")
-				.antMatchers(HttpMethod.POST, "/api/ili/ili2pg/import").hasRole("ADMINISTRADOR_SISTEMA")
+		http.authorizeRequests()
+
+				// microservice oauth
+				.antMatchers("/api/security/oauth/**").permitAll()
+
+				// microservice administration
+				.antMatchers("/api/administration/users/login").authenticated()
+				.antMatchers("/api/administration/users/{id}").denyAll()
+				.antMatchers("/api/administration/users/token").denyAll()
+
+				// microservice tasks
+				.antMatchers(HttpMethod.GET, "/api/tasks").denyAll()
+				.antMatchers(HttpMethod.POST, "/api/tasks").denyAll()
+				.antMatchers(HttpMethod.GET, "/api/tasks/{id}").authenticated()
+				.antMatchers(HttpMethod.PUT, "/api/tasks/{id}/close").authenticated()
+				.antMatchers(HttpMethod.GET, "/api/tasks/users").authenticated()
+
+				// microservice ili
+				.antMatchers("/api/ili/ili2pg/schema-import").denyAll()
+				.antMatchers("/api/ili/ilivalidator/validate").denyAll()
+				.antMatchers("/api/ili/ili2pg/import").denyAll()
+
+				// others services
 				.anyRequest().authenticated().and().cors().configurationSource(corsConfigurationSource());
 	}
 
