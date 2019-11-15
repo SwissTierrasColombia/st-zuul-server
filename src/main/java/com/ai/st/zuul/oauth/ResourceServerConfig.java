@@ -50,9 +50,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.PUT, "/api/tasks/{id}/close").authenticated()
 
 				// microservice ili
-				.antMatchers("/api/ili/ili2pg/schema-import").authenticated()
-				.antMatchers("/api/ili/ilivalidator/validate").authenticated()
-				.antMatchers("/api/ili/ili2pg/import").authenticated()
+				.antMatchers("/api/ili/ili2pg/v1/schema-import").authenticated()
+				.antMatchers("/api/ili/ilivalidator/v1/validate").authenticated()
+				.antMatchers("/api/ili/ili2pg/v1/import").authenticated()
 				
 				// microservice filemanager
 				.antMatchers("/api/filemanager/v1/file").authenticated()
