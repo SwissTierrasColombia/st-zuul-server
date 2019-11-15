@@ -39,24 +39,26 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers("/api/security/oauth/**").permitAll()
 
 				// microservice administration
-				.antMatchers("/api/administration/users/login").authenticated()
-				.antMatchers("/api/administration/users/{id}").denyAll()
+				.antMatchers("/api/administration/users/login").denyAll()
+				.antMatchers("/api/administration/users/{id}").authenticated()
 				.antMatchers("/api/administration/users/token").denyAll()
 
 				// microservice tasks
-				.antMatchers(HttpMethod.GET, "/api/tasks").denyAll()
-				.antMatchers(HttpMethod.POST, "/api/tasks").denyAll()
+				.antMatchers(HttpMethod.GET, "/api/tasks").authenticated()
+				.antMatchers(HttpMethod.POST, "/api/tasks").authenticated()
 				.antMatchers(HttpMethod.GET, "/api/tasks/{id}").authenticated()
 				.antMatchers(HttpMethod.PUT, "/api/tasks/{id}/close").authenticated()
-				.antMatchers(HttpMethod.GET, "/api/tasks/users").authenticated()
 
 				// microservice ili
-				.antMatchers("/api/ili/ili2pg/schema-import").denyAll()
-				.antMatchers("/api/ili/ilivalidator/validate").denyAll()
-				.antMatchers("/api/ili/ili2pg/import").denyAll()
+				.antMatchers("/api/ili/ili2pg/schema-import").authenticated()
+				.antMatchers("/api/ili/ilivalidator/validate").authenticated()
+				.antMatchers("/api/ili/ili2pg/import").authenticated()
+				
+				// microservice filemanager
+				.antMatchers("/api/filemanager/v1/file").authenticated()
 
 				// others services
-				.anyRequest().authenticated().and().cors().configurationSource(corsConfigurationSource());
+				.anyRequest().denyAll().and().cors().configurationSource(corsConfigurationSource());
 	}
 
 	@Bean
