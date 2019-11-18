@@ -26,6 +26,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Value("${oauth.jwt.key}")
 	private String jwtKey;
 
+	public static final String ROLE_ADMINISTRATOR = "ADMINISTRADOR";
+	public static final String ROLE_MANAGER = "";
+	public static final String ROLE_OPERATOR = "";
+	public static final String ROLE_SUPPLY_SUPPLIER = "";
+
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		resources.tokenStore(tokenStore());
@@ -53,9 +58,18 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers("/api/ili/ili2pg/v1/schema-import").authenticated()
 				.antMatchers("/api/ili/ilivalidator/v1/validate").authenticated()
 				.antMatchers("/api/ili/ili2pg/v1/import").authenticated()
-				
+
 				// microservice filemanager
 				.antMatchers("/api/filemanager/v1/file").authenticated()
+
+				// microservice managers
+				.antMatchers(HttpMethod.GET, "/api/managers/v1/managers").hasRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.GET, "/api/managers/v1/managers/{managerId}").hasRole(ROLE_ADMINISTRATOR)
+				
+				// microservice workspeaces
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/departments").hasRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/departments/{departmentId}/municipalities").hasRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/workspaces").hasRole(ROLE_ADMINISTRATOR)
 
 				// others services
 				.anyRequest().denyAll().and().cors().configurationSource(corsConfigurationSource());
@@ -68,7 +82,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		corsConfig.setAllowedOrigins(Arrays.asList("*"));
 		corsConfig.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
 		corsConfig.setAllowCredentials(true);
-		corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+		corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Access-Control-Allow-Origin"));
 
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", corsConfig);
