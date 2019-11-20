@@ -27,7 +27,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	private String jwtKey;
 
 	public static final String ROLE_ADMINISTRATOR = "ADMINISTRADOR";
-	public static final String ROLE_MANAGER = "";
+	public static final String ROLE_MANAGER = "GESTOR";
 	public static final String ROLE_OPERATOR = "";
 	public static final String ROLE_SUPPLY_SUPPLIER = "";
 
@@ -67,9 +67,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/managers/v1/managers/{managerId}").hasRole(ROLE_ADMINISTRATOR)
 				
 				// microservice workspeaces
-				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/departments").hasRole(ROLE_ADMINISTRATOR)
-				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/departments/{departmentId}/municipalities").hasRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/departments").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/departments/{departmentId}/municipalities").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/workspaces").hasRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/municipalities/{municipalityId}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 
 				// others services
 				.anyRequest().denyAll().and().cors().configurationSource(corsConfigurationSource());
