@@ -29,7 +29,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public static final String ROLE_ADMINISTRATOR = "ADMINISTRADOR";
 	public static final String ROLE_MANAGER = "GESTOR";
 	public static final String ROLE_OPERATOR = "";
-	public static final String ROLE_SUPPLY_SUPPLIER = "";
+	public static final String ROLE_SUPPLY_SUPPLIER = "PROVEEDOR_INSUMO";
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
@@ -78,7 +78,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/{workspaceId}/operators").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/municipalities/{municipalityId}/active").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/providers/municipalities/{municipalityId}/requests").hasRole(ROLE_MANAGER)
-
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/providers/pending-requests").hasRole(ROLE_SUPPLY_SUPPLIER)
 				
 				// microservice operators
 				.antMatchers(HttpMethod.GET, "/api/operators/v1/operators").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
