@@ -43,17 +43,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				// microservice oauth
 				.antMatchers("/api/security/oauth/**").permitAll()
 
-				// microservice administration
-				.antMatchers("/api/administration/users/login").denyAll()
-				.antMatchers("/api/administration/users/{id}").authenticated()
-				.antMatchers("/api/administration/users/token").denyAll()
-
-				// microservice tasks
-				.antMatchers(HttpMethod.GET, "/api/tasks").authenticated()
-				.antMatchers(HttpMethod.POST, "/api/tasks").authenticated()
-				.antMatchers(HttpMethod.GET, "/api/tasks/{id}").authenticated()
-				.antMatchers(HttpMethod.PUT, "/api/tasks/{id}/close").authenticated()
-
 				// microservice ili
 				.antMatchers("/api/ili/ili2pg/v1/schema-import").authenticated()
 				.antMatchers("/api/ili/ilivalidator/v1/validate").authenticated()
@@ -79,6 +68,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/municipalities/{municipalityId}/active").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/providers/municipalities/{municipalityId}/requests").hasRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/providers/pending-requests").hasRole(ROLE_SUPPLY_SUPPLIER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/tasks/pending").authenticated()
 				
 				// microservice operators
 				.antMatchers(HttpMethod.GET, "/api/operators/v1/operators").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
@@ -88,6 +78,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/providers").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/providers/{providerId}/types-supplies").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
 				
+				// microservice supplies
+				.antMatchers(HttpMethod.POST, "/api/supplies/v1/supplies").authenticated()
 
 				// others services
 				.anyRequest().denyAll().and().cors().configurationSource(corsConfigurationSource());
