@@ -48,9 +48,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers("/api/ili/ilivalidator/v1/validate").authenticated()
 				.antMatchers("/api/ili/ili2pg/v1/import").authenticated()
 
-				// microservice filemanager
-				.antMatchers("/api/filemanager/v1/file").authenticated()
-
 				// microservice managers
 				.antMatchers(HttpMethod.GET, "/api/managers/v1/managers").hasRole(ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.GET, "/api/managers/v1/managers/{managerId}").hasRole(ROLE_ADMINISTRATOR)
@@ -71,6 +68,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/tasks/pending").authenticated()
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/providers/requests/{requestId}").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/providers/requests/{requestId}/close").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
+				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/administration/users").hasAnyRole(ROLE_ADMINISTRATOR)
 				
 				// microservice operators
 				.antMatchers(HttpMethod.GET, "/api/operators/v1/operators").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
@@ -79,9 +77,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				// microservice providers
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/providers").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/providers/{providerId}/types-supplies").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
-
-				// microservice supplies
-				.antMatchers(HttpMethod.POST, "/api/supplies/v1/supplies").authenticated()
 				
 				// others services
 				.anyRequest().denyAll().and().cors().configurationSource(corsConfigurationSource());
