@@ -78,6 +78,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				// microservice providers
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/providers").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/providers/{providerId}/types-supplies").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/providers/{providerId}/profiles").hasAnyRole(ROLE_ADMINISTRATOR)
 				
 				// others services
 				.anyRequest().denyAll().and().cors().configurationSource(corsConfigurationSource());
