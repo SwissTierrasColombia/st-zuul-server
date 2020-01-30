@@ -46,6 +46,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				// microservice ili
 				.antMatchers("/api/ili/ili2pg/v1/schema-import").authenticated()
 				.antMatchers("/api/ili/ilivalidator/v1/validate").authenticated()
+				.antMatchers("/api/ili/ilivalidator/v1/validate/background").authenticated()
 				.antMatchers("/api/ili/ili2pg/v1/import").authenticated()
 				.antMatchers("/api/ili/ili2pg/v1/integration/cadastre-registration").authenticated()
 				.antMatchers("/api/ili/ili2pg/v1/integration/cadastre-registration-reference").authenticated()
@@ -78,6 +79,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/administration/users").hasAnyRole(ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/supplies/{municipalityId}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/tasks/{taskId}/start").authenticated()
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/tasks/{taskId}/cancel").authenticated()
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/tasks/{taskId}/finish").authenticated()
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/tasks/pending").authenticated()
 				
 				// microservice operators
