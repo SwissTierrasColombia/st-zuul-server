@@ -51,6 +51,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers("/api/ili/ili2pg/v1/integration/cadastre-registration").authenticated()
 				.antMatchers("/api/ili/ili2pg/v1/integration/cadastre-registration-reference").authenticated()
 				.antMatchers("/api/ili/ili2pg/v1/export").authenticated()
+				.antMatchers(HttpMethod.GET, "/api/ili/versions/v1/versions").authenticated()
 
 				// microservice managers
 				.antMatchers(HttpMethod.GET, "/api/managers/v1/managers").hasRole(ROLE_ADMINISTRATOR)
