@@ -28,7 +28,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	public static final String ROLE_ADMINISTRATOR = "ADMINISTRADOR";
 	public static final String ROLE_MANAGER = "GESTOR";
-	public static final String ROLE_OPERATOR = "";
+	public static final String ROLE_OPERATOR = "OPERADOR";
 	public static final String ROLE_SUPPLY_SUPPLIER = "PROVEEDOR_INSUMO";
 
 	@Override
@@ -65,6 +65,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/municipalities/{municipalityId}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/workspaces/{workspaceId}/operators").hasRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/workspaces/{workspaceId}/operators/deliveries").hasRole(ROLE_MANAGER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/operators/deliveries").hasRole(ROLE_OPERATOR)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/workspaces/{workspaceId}").hasRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/{workspaceId}/supports").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/{workspaceId}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
