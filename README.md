@@ -33,13 +33,13 @@ $ docker network create st
 ### Create image from Dockerfile
 
 ```sh
-$ docker build -t st-zuul-server:ursus .
+$ docker build -t st-zuul-server:lynx .
 ```
 
 ### Run Container
 
 ```sh
-$ docker run -p 8091:8091 --name st-zuul-server --network st -d st-zuul-server:ursus
+$ docker run -p 8091:8091 --name st-zuul-server --network st -d st-zuul-server:lynx
 ```
 
 ## License
