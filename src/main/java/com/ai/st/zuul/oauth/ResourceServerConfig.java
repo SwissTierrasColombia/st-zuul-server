@@ -30,6 +30,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public static final String ROLE_MANAGER = "GESTOR";
 	public static final String ROLE_OPERATOR = "OPERADOR";
 	public static final String ROLE_SUPPLY_SUPPLIER = "PROVEEDOR_INSUMO";
+	public static final String ROLE_SUPER_ADMINISTRATOR = "SUPER_ADMINISTRADOR";
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
