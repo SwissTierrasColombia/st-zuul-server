@@ -83,6 +83,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/providers/requests/{requestId}/close").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/providers/municipalities/{municipalityId}/requests").hasRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/providers/pending-requests").hasRole(ROLE_SUPPLY_SUPPLIER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/providers/closed-requests").hasRole(ROLE_SUPPLY_SUPPLIER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/providers/requests/emmiters").hasRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/administration/users").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_SUPER_ADMINISTRATOR, ROLE_MANAGER, ROLE_SUPPLY_SUPPLIER, ROLE_OPERATOR)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/administration/users/{userId}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_SUPER_ADMINISTRATOR, ROLE_MANAGER, ROLE_SUPPLY_SUPPLIER, ROLE_OPERATOR)
