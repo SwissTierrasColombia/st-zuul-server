@@ -101,6 +101,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/operators/deliveries/{deliveryId}/disable").hasAnyRole(ROLE_OPERATOR)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/{workspaceId}/download-support/{supportId}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				
+				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/managers").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/managers").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/managers/{managerId}/enable").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/managers/{managerId}/disable").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				
 				// microservice operators
 				.antMatchers(HttpMethod.GET, "/api/operators/v1/operators").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.GET, "/api/operators/v1/operators/{operatorId}").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
