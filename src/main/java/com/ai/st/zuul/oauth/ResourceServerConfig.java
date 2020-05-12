@@ -108,6 +108,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/tasks/pending").authenticated()
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/operators/deliveries/{deliveryId}/disable").hasAnyRole(ROLE_OPERATOR)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/{workspaceId}/download-support/{supportId}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/providers/requests/municipality").hasRole(ROLE_MANAGER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/providers/requests/provider").hasRole(ROLE_MANAGER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/providers/requests/package").hasRole(ROLE_MANAGER)
 				
 				// microservices manager
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/managers").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
