@@ -113,10 +113,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/providers/requests/package").hasRole(ROLE_MANAGER)
 				
 				// microservices manager
-				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/managers").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
-				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/managers").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
-				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/managers/{managerId}/enable").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
-				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/managers/{managerId}/disable").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.POST, "/api/managers/v1/managers").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.PUT, "/api/managers/v1/managers").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.PUT, "/api/managers/v1/managers/{managerId}/enable").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.PUT, "/api/managers/v1/managers/{managerId}/disable").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				
 				// microservices manager profiles
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/managers/profiles").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
@@ -128,13 +128,16 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/operators/v1/operators").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.GET, "/api/operators/v1/operators/{operatorId}").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
 				
-				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/operators").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
-				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/operators").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
-				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/operators/{operatorId}/disable").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
-				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/operators/{operatorId}/enable").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.POST, "/api/operators/v1/operators").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.PUT, "/api/operators/v1/operators").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.PUT, "/api/operators/v1/operators/{operatorId}/disable").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.PUT, "/api/operators/v1/operators/{operatorId}/enable").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				
 				// microservice providers
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/providers").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.POST, "/api/providers-supplies/v1/providers").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.PUT, "/api/providers-supplies/v1/providers").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.DELETE, "/api/providers-supplies/v1/providers").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/providers/{providerId}/types-supplies").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/providers/{providerId}/profiles").hasAnyRole(ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.POST, "/api/providers-supplies/v1/providers/{providerId}/type-supplies").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
