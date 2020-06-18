@@ -53,6 +53,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers("/api/ili/ili2pg/v1/integration/cadastre-registration-reference").authenticated()
 				.antMatchers("/api/ili/ili2pg/v1/export").authenticated()
 				.antMatchers(HttpMethod.GET, "/api/ili/versions/v1/versions").authenticated()
+				.antMatchers(HttpMethod.POST, "/api/ili/xtf2json/v1/ili2json").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/ili/xtf2json/v1/shp2json").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/ili/xtf2json/v1/gpkg2json").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/ili/xtf2json/v1/download/{id}/{key}/{type}").permitAll()
 
 				// microservice managers
 				.antMatchers(HttpMethod.GET, "/api/managers/v1/managers").hasRole(ROLE_ADMINISTRATOR)
