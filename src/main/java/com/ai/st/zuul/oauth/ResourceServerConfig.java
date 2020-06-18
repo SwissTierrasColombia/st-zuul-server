@@ -53,6 +53,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers("/api/ili/ili2pg/v1/integration/cadastre-registration-reference").authenticated()
 				.antMatchers("/api/ili/ili2pg/v1/export").authenticated()
 				.antMatchers(HttpMethod.GET, "/api/ili/versions/v1/versions").authenticated()
+				.antMatchers(HttpMethod.POST, "/api/ili/xtf2json/v1/ili2json").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/ili/xtf2json/v1/shp2json").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/ili/xtf2json/v1/gpkg2json").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/ili/xtf2json/v1/download/{id}/{key}/{type}").permitAll()
 
 				// microservice managers
 				.antMatchers(HttpMethod.GET, "/api/managers/v1/managers").hasRole(ROLE_ADMINISTRATOR)
@@ -67,6 +71,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/workspaces/{workspaceId}/operators").hasRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/workspaces/{workspaceId}/operators/deliveries").hasRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/operators/deliveries").hasRole(ROLE_OPERATOR)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/operators/deliveries/closed").hasRole(ROLE_OPERATOR)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/workspaces/{workspaceId}").hasRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/{workspaceId}/supports").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/{workspaceId}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
@@ -107,6 +112,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/tasks/{taskId}/finish").authenticated()
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/tasks/pending").authenticated()
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/operators/deliveries/{deliveryId}/disable").hasAnyRole(ROLE_OPERATOR)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/operators/deliveries/{deliveryId}/reports-individual/{supplyId}").hasAnyRole(ROLE_OPERATOR)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/operators/deliveries/{deliveryId}/reports-total").hasAnyRole(ROLE_OPERATOR)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/{workspaceId}/download-support/{supportId}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/providers/requests/municipality").hasRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/providers/requests/provider").hasRole(ROLE_MANAGER)
@@ -141,7 +148,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/providers/{providerId}/types-supplies").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/providers/{providerId}/profiles").hasAnyRole(ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.POST, "/api/providers-supplies/v1/providers/{providerId}/type-supplies").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
-				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/categories").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/categories").hasRole(ROLE_ADMINISTRATOR)
 				
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/providers").hasAnyRole(ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/providers").hasAnyRole(ROLE_ADMINISTRATOR)
