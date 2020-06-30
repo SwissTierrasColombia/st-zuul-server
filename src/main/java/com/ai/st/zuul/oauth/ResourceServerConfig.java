@@ -56,7 +56,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "/api/ili/xtf2json/v1/ili2json").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/ili/xtf2json/v1/shp2json").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/ili/xtf2json/v1/gpkg2json").permitAll()
-				.antMatchers(HttpMethod.GET, "/api/ili/xtf2json/v1/download/{id}/{key}/{type}").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/ili/xtf2json/v1/kml2json").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/ili/xtf2json/v1/supply2json").hasAnyRole(ROLE_OPERATOR, ROLE_MANAGER, ROLE_SUPPLY_SUPPLIER)
+				.antMatchers(HttpMethod.GET, "/api/ili/xtf2json/v1/download/{id}/{key}/{type}").hasAnyRole(ROLE_OPERATOR, ROLE_MANAGER, ROLE_SUPPLY_SUPPLIER)
 
 				// microservice managers
 				.antMatchers(HttpMethod.GET, "/api/managers/v1/managers").hasRole(ROLE_ADMINISTRATOR)
@@ -118,6 +120,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/providers/requests/municipality").hasRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/providers/requests/provider").hasRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/providers/requests/package").hasRole(ROLE_MANAGER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/integrations/running").hasRole(ROLE_MANAGER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/integrations/pending").hasRole(ROLE_MANAGER)
 				
 				// microservices manager
 				.antMatchers(HttpMethod.POST, "/api/managers/v1/managers").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
