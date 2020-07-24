@@ -2,8 +2,7 @@ spring:
   application:
     name: st-zuul-server
   profiles:
-    active: 
-      - "develop"
+    active: "develop"
       
 ---
 spring:
