@@ -128,6 +128,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/providers/supplies-review/{supplyRequestedId}/update/{boundarySpaceId}").hasRole(ROLE_SUPPLY_SUPPLIER)
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/providers/supplies-review/{supplyRequestedId}/close").hasRole(ROLE_SUPPLY_SUPPLIER)
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/providers/supplies-review/{supplyRequestedId}/skip").hasRole(ROLE_SUPPLY_SUPPLIER)
+				// petitions module
+				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/petitions").hasRole(ROLE_MANAGER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/petitions/manager/{providerId}").hasRole(ROLE_MANAGER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/petitions/provider/open").hasRole(ROLE_SUPPLY_SUPPLIER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/petitions/provider/close").hasRole(ROLE_SUPPLY_SUPPLIER)
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/petitions/{petitionId}/accept").hasRole(ROLE_SUPPLY_SUPPLIER)
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/petitions/{petitionId}/reject").hasRole(ROLE_SUPPLY_SUPPLIER)
 				
 				// microservices manager
 				.antMatchers(HttpMethod.POST, "/api/managers/v1/managers").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
