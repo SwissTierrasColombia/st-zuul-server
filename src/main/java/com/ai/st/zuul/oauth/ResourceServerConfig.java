@@ -135,6 +135,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/petitions/provider/close").hasRole(ROLE_SUPPLY_SUPPLIER)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/petitions/{petitionId}/accept").hasRole(ROLE_SUPPLY_SUPPLIER)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/petitions/{petitionId}/reject").hasRole(ROLE_SUPPLY_SUPPLIER)
+				// supplies module
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/supplies/{supplyId}/active").hasAnyRole(ROLE_MANAGER)
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/supplies/{supplyId}/inactive").hasAnyRole(ROLE_MANAGER)
 				
 				// microservices manager
 				.antMatchers(HttpMethod.POST, "/api/managers/v1/managers").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
