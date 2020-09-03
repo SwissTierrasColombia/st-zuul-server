@@ -138,6 +138,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				// supplies module
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/supplies/{supplyId}/active").hasAnyRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/supplies/{supplyId}/inactive").hasAnyRole(ROLE_MANAGER)
+				// cadastral authority module
+				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/cadastral-authority/supplies/{municipalityId}").hasAnyRole(ROLE_ADMINISTRATOR)
 				
 				// microservice manager
 				.antMatchers(HttpMethod.POST, "/api/managers/v1/managers").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
@@ -174,8 +176,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				// microservice admininistrator
 				.antMatchers(HttpMethod.GET, "/api/administration/v1/users").hasAnyRole(ROLE_ADMINISTRATOR)
 				
-				// microservice filemanager
-				.antMatchers(HttpMethod.POST, "/api/filemanager/v1/file").permitAll()
+				// microservice supplies
+				.antMatchers(HttpMethod.GET, "/api/supplies/v1/attachments-types").hasAnyRole(ROLE_ADMINISTRATOR)
 				
 				// others services
 				.anyRequest().denyAll().and().cors().configurationSource(corsConfigurationSource());
