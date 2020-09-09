@@ -74,7 +74,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/workspaces/{workspaceId}/operators/deliveries").hasRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/operators/deliveries").hasRole(ROLE_OPERATOR)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/operators/deliveries/closed").hasRole(ROLE_OPERATOR)
-				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/workspaces/{workspaceId}").hasRole(ROLE_MANAGER)
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/workspaces/{workspaceId}").hasRole(ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/{workspaceId}/supports").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/{workspaceId}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/{workspaceId}/operators").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
@@ -138,6 +138,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				// supplies module
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/supplies/{supplyId}/active").hasAnyRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/supplies/{supplyId}/inactive").hasAnyRole(ROLE_MANAGER)
+				// cadastral authority module
+				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/cadastral-authority/supplies/{municipalityId}").hasAnyRole(ROLE_ADMINISTRATOR)
+				// providers - module
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/providers/types-supplies/{typeSupplyId}/enable").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/providers/types-supplies/{typeSupplyId}/disable").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
 				
 				// microservice manager
 				.antMatchers(HttpMethod.POST, "/api/managers/v1/managers").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
@@ -167,6 +172,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/providers/{providerId}/profiles").hasAnyRole(ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.POST, "/api/providers-supplies/v1/providers/{providerId}/type-supplies").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/categories").hasRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.PUT, "/api/providers-supplies/v1/providers/{providerId}/enable").hasAnyRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.PUT, "/api/providers-supplies/v1/providers/{providerId}/disable").hasAnyRole(ROLE_ADMINISTRATOR)
 				
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/providers").hasAnyRole(ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/providers").hasAnyRole(ROLE_ADMINISTRATOR)
@@ -174,8 +181,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				// microservice admininistrator
 				.antMatchers(HttpMethod.GET, "/api/administration/v1/users").hasAnyRole(ROLE_ADMINISTRATOR)
 				
-				// microservice filemanager
-				.antMatchers(HttpMethod.POST, "/api/filemanager/v1/file").permitAll()
+				// microservice supplies
+				.antMatchers(HttpMethod.GET, "/api/supplies/v1/attachments-types").hasAnyRole(ROLE_ADMINISTRATOR)
 				
 				// others services
 				.anyRequest().denyAll().and().cors().configurationSource(corsConfigurationSource());
@@ -219,3 +226,4 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	}
 
 }
+
