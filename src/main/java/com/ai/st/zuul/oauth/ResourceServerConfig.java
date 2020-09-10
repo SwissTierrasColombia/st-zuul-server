@@ -85,7 +85,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/workspaces/{workspaceId}/integrations/{integrationId}/export").hasAnyRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.DELETE, "/api/workspaces/v1/workspaces/{workspaceId}/integrations/{integrationId}").hasAnyRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/download-supply/{supplyId}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER, ROLE_OPERATOR)
-				.antMatchers(HttpMethod.DELETE, "/api/workspaces/v1/workspaces/{workspaceId}/supplies/{supplyId}").hasAnyRole(ROLE_MANAGER)
+				.antMatchers(HttpMethod.DELETE, "/api/workspaces/v1/workspaces/{workspaceId}/supplies/{supplyId}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/providers/requests/{requestId}").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/providers/requests/{requestId}/close").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/providers/municipalities/{municipalityId}/requests").hasRole(ROLE_MANAGER)
