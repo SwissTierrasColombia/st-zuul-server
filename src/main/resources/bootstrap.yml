@@ -2,7 +2,7 @@ spring:
   application:
     name: st-zuul-server
   profiles:
-    active: "aws"
+    active: "production"
       
 ---
 spring:
