@@ -138,9 +138,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				// cadastral authority module
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/cadastral-authority/supplies/{municipalityId}").hasAnyRole(ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/cadastral-authority/report/{municipalityId}").hasAnyRole(ROLE_ADMINISTRATOR)
-				// providers - module
+				// providers module
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/providers/types-supplies/{typeSupplyId}/enable").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/providers/types-supplies/{typeSupplyId}/disable").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
+				// municipalities module
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/municipalities/by-manager/{managerId}").hasAnyRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/municipalities/not-manager/{managerId}").hasAnyRole(ROLE_ADMINISTRATOR)
 				
 				// microservice operators
 				.antMatchers(HttpMethod.GET, "/api/operators/v1/operators").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
