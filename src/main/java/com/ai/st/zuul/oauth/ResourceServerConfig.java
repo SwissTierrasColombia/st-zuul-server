@@ -146,10 +146,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/municipalities/not-workspace/departments/{departmentId}").hasAnyRole(ROLE_ADMINISTRATOR)
 				// workspaces module
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/location").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.DELETE, "/api/workspaces/v1/workspaces/unassign/{municipalityId}/managers/{managerCode}").hasAnyRole(ROLE_ADMINISTRATOR)
 				// managers module
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/managers/deliveries").hasAnyRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/managers/deliveries/{deliveryId}").hasAnyRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/report-delivery/{deliveryId}").hasAnyRole(ROLE_MANAGER)
+				// integrations module
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/integrations/{integrationId}/configure-view").hasAnyRole(ROLE_MANAGER)
 				
 				// microservice operators
 				.antMatchers(HttpMethod.GET, "/api/operators/v1/operators").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
@@ -176,6 +179,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				
 				// microservice admininistrator
 				.antMatchers(HttpMethod.GET, "/api/administration/v1/users").hasAnyRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.PUT, "/api/administration/v1/users/recover").permitAll()
+				.antMatchers(HttpMethod.PUT, "/api/administration/v1/users/reset").permitAll()
 				
 				// microservice supplies
 				.antMatchers(HttpMethod.GET, "/api/supplies/v1/attachments-types").hasAnyRole(ROLE_ADMINISTRATOR)
