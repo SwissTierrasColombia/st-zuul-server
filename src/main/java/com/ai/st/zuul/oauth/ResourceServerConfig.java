@@ -185,6 +185,18 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				// microservice supplies
 				.antMatchers(HttpMethod.GET, "/api/supplies/v1/attachments-types").hasAnyRole(ROLE_ADMINISTRATOR)
 				
+				/**
+				 * Services V2
+				 */
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v2/municipalities/{managerCode}/not-belong/departments/{departmentId}").hasAnyRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v2/workspaces/validate-municipalities-to-assign").hasAnyRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.POST, "/api/workspaces/v2/workspaces/assign-manager").hasAnyRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v2/workspaces/{workspaceId}/download-support-manager/{managerCode}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v2/workspaces/{workspaceId}/managers/{managerCode}").hasAnyRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.PUT, "/api/workspaces/v2/workspaces/{workspaceId}/operators/{operatorCode}").hasAnyRole(ROLE_MANAGER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v2/workspaces/{workspaceId}/download-support-operator/{operatorCode}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				
+				
 				// others services
 				.anyRequest().denyAll().and().cors().configurationSource(corsConfigurationSource());
 	}
