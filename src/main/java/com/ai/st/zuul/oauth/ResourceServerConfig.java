@@ -195,7 +195,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v2/workspaces/{workspaceId}/managers/{managerCode}").hasAnyRole(ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v2/workspaces/{workspaceId}/operators/{operatorCode}").hasAnyRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v2/workspaces/{workspaceId}/download-support-operator/{operatorCode}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
-				
+
+				.antMatchers(HttpMethod.GET, "/api/supplies/v2/supplies/xtf/{municipalityCode}").hasAnyRole(ROLE_MANAGER)
 				
 				// others services
 				.anyRequest().denyAll().and().cors().configurationSource(corsConfigurationSource());
