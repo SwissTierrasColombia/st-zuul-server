@@ -181,9 +181,15 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/administration/v1/users").hasAnyRole(ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.PUT, "/api/administration/v1/users/recover").permitAll()
 				.antMatchers(HttpMethod.PUT, "/api/administration/v1/users/reset").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/administration/v1/users/managers").hasAnyRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.GET, "/api/administration/v1/users/providers").hasAnyRole(ROLE_ADMINISTRATOR)
+				.antMatchers(HttpMethod.GET, "/api/administration/v1/users/operators").hasAnyRole(ROLE_ADMINISTRATOR)
 				
 				// microservice supplies
 				.antMatchers(HttpMethod.GET, "/api/supplies/v1/attachments-types").hasAnyRole(ROLE_ADMINISTRATOR)
+
+				// microservice products
+				.antMatchers(HttpMethod.POST, "/api/products/v1/deliveries").hasAnyRole(ROLE_OPERATOR)
 				
 				/**
 				 * Services V2
