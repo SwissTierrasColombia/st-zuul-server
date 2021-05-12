@@ -1,6 +1,7 @@
 package com.ai.st.zuul.oauth;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -69,6 +70,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/municipalities/{municipalityId}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/workspaces/{workspaceId}/operators").hasRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/workspaces/{workspaceId}/operators/deliveries").hasRole(ROLE_MANAGER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/operators").hasAnyRole(ROLE_OPERATOR)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/operators/deliveries").hasRole(ROLE_OPERATOR)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/operators/deliveries/closed").hasRole(ROLE_OPERATOR)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/workspaces/{workspaceId}").hasRole(ROLE_ADMINISTRATOR)
@@ -153,7 +155,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/report-delivery/{deliveryId}").hasAnyRole(ROLE_MANAGER)
 				// integrations module
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/integrations/{integrationId}/configure-view").hasAnyRole(ROLE_MANAGER)
-				
+
 				// microservice operators
 				.antMatchers(HttpMethod.GET, "/api/operators/v1/operators").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.GET, "/api/operators/v1/operators/{operatorId}").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
@@ -177,7 +179,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/providers").hasAnyRole(ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/providers").hasAnyRole(ROLE_ADMINISTRATOR)
 				
-				// microservice admininistrator
+				// microservice administrator
 				.antMatchers(HttpMethod.GET, "/api/administration/v1/users").hasAnyRole(ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.PUT, "/api/administration/v1/users/recover").permitAll()
 				.antMatchers(HttpMethod.PUT, "/api/administration/v1/users/reset").permitAll()
@@ -188,10 +190,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				// microservice supplies
 				.antMatchers(HttpMethod.GET, "/api/supplies/v1/attachments-types").hasAnyRole(ROLE_ADMINISTRATOR)
 
-				// microservice products
-				.antMatchers(HttpMethod.POST, "/api/products/v1/deliveries").hasAnyRole(ROLE_OPERATOR)
+				// microservice quality
+				.antMatchers(HttpMethod.POST, "/api/quality/v1/deliveries").hasAnyRole(ROLE_OPERATOR)
+				.antMatchers(HttpMethod.PUT, "/api/quality/v1/deliveries/{deliveryId}/products").hasAnyRole(ROLE_OPERATOR)
+				.antMatchers(HttpMethod.GET, "/api/quality/v1/products").hasAnyRole(ROLE_MANAGER, ROLE_OPERATOR)
 				
-				/**
+				/*
 				 * Services V2
 				 */
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v2/municipalities/{managerCode}/not-belong/departments/{departmentId}").hasAnyRole(ROLE_ADMINISTRATOR)
@@ -212,7 +216,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public CorsConfigurationSource corsConfigurationSource() {
 
 		CorsConfiguration corsConfig = new CorsConfiguration();
-		corsConfig.setAllowedOrigins(Arrays.asList("*"));
+		corsConfig.setAllowedOrigins(Collections.singletonList("*"));
 		corsConfig.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
 		corsConfig.setAllowCredentials(true);
 		corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Access-Control-Allow-Origin"));
