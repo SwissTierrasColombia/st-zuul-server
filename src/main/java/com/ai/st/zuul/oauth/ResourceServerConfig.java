@@ -199,6 +199,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.PATCH, "/api/quality/v1/deliveries/{deliveryId}/status/delivered").hasAnyRole(ROLE_OPERATOR)
 				.antMatchers(HttpMethod.PATCH, "/api/quality/v1/deliveries/{deliveryId}/status/review").hasAnyRole(ROLE_OPERATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.PATCH, "/api/quality/v1/deliveries/{deliveryId}/status/remediation").hasAnyRole(ROLE_MANAGER)
+				.antMatchers(HttpMethod.PATCH, "/api/quality/v1/deliveries/{deliveryId}/status/accepted").hasAnyRole(ROLE_MANAGER)
 
 				.antMatchers(HttpMethod.POST, "/api/quality/v1/deliveries/{deliveryId}/products").hasAnyRole(ROLE_OPERATOR)
 				.antMatchers(HttpMethod.GET, "/api/quality/v1/deliveries/{deliveryId}/products").hasAnyRole(ROLE_OPERATOR, ROLE_MANAGER)
