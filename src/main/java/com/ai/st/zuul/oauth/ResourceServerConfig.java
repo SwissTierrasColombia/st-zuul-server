@@ -153,6 +153,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/managers/deliveries").hasAnyRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/managers/deliveries/{deliveryId}").hasAnyRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/report-delivery/{deliveryId}").hasAnyRole(ROLE_MANAGER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/managers/operators").hasAnyRole(ROLE_MANAGER)
 				// integrations module
 				.antMatchers(HttpMethod.PUT, "/api/workspaces/v1/integrations/{integrationId}/configure-view").hasAnyRole(ROLE_MANAGER)
 
