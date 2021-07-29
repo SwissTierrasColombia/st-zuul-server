@@ -64,8 +64,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.PUT, "/api/managers/v1/managers/{managerId}/disable").hasAnyRole(ROLE_ADMINISTRATOR)
 				
 				// microservice workspaces
-				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/departments").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
-				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/departments/{departmentId}/municipalities").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/departments").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER, ROLE_SUPPLY_SUPPLIER)
+				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/departments/{departmentId}/municipalities").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER, ROLE_SUPPLY_SUPPLIER)
 
 				.antMatchers(HttpMethod.GET, "/api/workspaces/v1/workspaces/municipalities/{municipalityId}").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
 				.antMatchers(HttpMethod.POST, "/api/workspaces/v1/workspaces/{workspaceId}/operators").hasRole(ROLE_MANAGER)
@@ -180,6 +180,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				.antMatchers(HttpMethod.PUT, "/api/providers-supplies/v1/providers/{providerId}/disable").hasAnyRole(ROLE_ADMINISTRATOR)
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/providers/from-requested-manager/{managerId}").hasAnyRole(ROLE_MANAGER)
 				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/reports/supplies-delivered-snr").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
+				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v2/pending-requests").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
+				.antMatchers(HttpMethod.GET, "/api/providers-supplies/v2/attended-requests").hasAnyRole(ROLE_SUPPLY_SUPPLIER)
 				
 				// microservice administrator
 				.antMatchers(HttpMethod.GET, "/api/administration/v1/users").hasAnyRole(ROLE_ADMINISTRATOR)
