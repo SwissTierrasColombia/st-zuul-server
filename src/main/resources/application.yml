@@ -4,16 +4,7 @@ spring:
     
 server:
   port: 8089
-  
-zuul:
-  debug:
-    request: true
-  routes:
-    mapstore:
-      path: /mapstore/**
-      url: http://192.168.98.200:8080
-      stripPrefix: false
-  
+
 eureka:
   client:
     serviceUrl:
