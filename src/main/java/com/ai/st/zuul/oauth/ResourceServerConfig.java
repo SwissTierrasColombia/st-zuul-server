@@ -47,7 +47,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/deeds").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/providers-supplies/v1/deeds/{filename}/download").permitAll()
 
-                .antMatchers(HttpMethod.GET, "/mapstore/**").hasAnyRole(ROLE_MANAGER)
+                .antMatchers(HttpMethod.GET, "/mapstore/**").permitAll()
 
 
                 // microservice oauth
