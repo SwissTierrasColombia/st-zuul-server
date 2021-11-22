@@ -235,6 +235,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/api/quality/v1/products/{productId}").hasAnyRole(ROLE_MANAGER)
                 .antMatchers(HttpMethod.DELETE, "/api/quality/v1/products/{productId}").hasAnyRole(ROLE_MANAGER)
 
+                // microservice sinic
+                .antMatchers(HttpMethod.POST, "/api/sinic/v1/deliveries").hasAnyRole(ROLE_MANAGER)
+                .antMatchers(HttpMethod.GET, "/api/sinic/v1/deliveries").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
+                .antMatchers(HttpMethod.GET, "/api/sinic/v1/deliveries/{deliveryId}").hasAnyRole(ROLE_MANAGER, ROLE_ADMINISTRATOR)
+                .antMatchers(HttpMethod.DELETE, "/api/sinic/v1/deliveries/{deliveryId}").hasAnyRole(ROLE_MANAGER)
+                .antMatchers(HttpMethod.PUT, "/api/sinic/v1/deliveries/{deliveryId}").hasAnyRole(ROLE_MANAGER)
+
                 /*
                  * Services V2
                  */
