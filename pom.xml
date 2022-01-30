@@ -14,7 +14,7 @@
 
 	<groupId>com.ai.st.zuul</groupId>
 	<artifactId>st-zuul-server</artifactId>
-	<version>1.9.4</version>
+	<version>1.9.7</version>
 	<name>st-zuul-server</name>
 	<description>Sistema Transición - Servidor Perimetral</description>
 
