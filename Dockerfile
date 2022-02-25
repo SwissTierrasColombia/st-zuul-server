@@ -12,6 +12,6 @@ VOLUME /tmp
 
 EXPOSE 8091
 
-ADD ./target/st-zuul-server-1.9.7.jar st-zuul-server.jar
+ADD ./target/st-zuul-server-1.9.8.jar st-zuul-server.jar
 
 ENTRYPOINT java -Xmx$XMX -jar /st-zuul-server.jar --spring.profiles.active=$PROFILE --spring.cloud.config.uri=$CLOUD_CONFIG
