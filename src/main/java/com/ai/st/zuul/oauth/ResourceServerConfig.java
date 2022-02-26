@@ -63,6 +63,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/ili/xtf2json/v1/download/{id}/{key}/{type}").hasAnyRole(ROLE_OPERATOR, ROLE_MANAGER, ROLE_SUPPLY_SUPPLIER)
 
                 // microservice managers
+                .antMatchers(HttpMethod.GET, "/api/managers/v1/managers/public").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/managers/v1/managers").hasRole(ROLE_ADMINISTRATOR)
                 .antMatchers(HttpMethod.GET, "/api/managers/v1/managers/{managerId}").hasRole(ROLE_ADMINISTRATOR)
                 .antMatchers(HttpMethod.GET, "/api/managers/v1/profiles").hasAnyRole(ROLE_ADMINISTRATOR, ROLE_MANAGER)
