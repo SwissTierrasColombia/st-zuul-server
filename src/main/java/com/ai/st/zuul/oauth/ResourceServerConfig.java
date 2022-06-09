@@ -254,6 +254,15 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/sinic/v1/deliveries/{deliveryId}/files/{fileId}/log/download").hasAnyRole(ROLE_MANAGER)
                 .antMatchers(HttpMethod.DELETE, "/api/sinic/v1/deliveries/{deliveryId}/files/{fileId}").hasAnyRole(ROLE_MANAGER)
 
+                .antMatchers(HttpMethod.GET, "/api/sinic/v1/groups").hasAnyRole(ROLE_ADMINISTRATOR)
+                .antMatchers(HttpMethod.PUT, "/api/sinic/v1/groups/{groupId}").hasAnyRole(ROLE_ADMINISTRATOR)
+                .antMatchers(HttpMethod.POST, "/api/sinic/v1/groups").hasAnyRole(ROLE_ADMINISTRATOR)
+
+                .antMatchers(HttpMethod.GET, "/api/sinic/v1/cycles").hasAnyRole(ROLE_ADMINISTRATOR)
+                .antMatchers(HttpMethod.GET, "/api/sinic/v1/cycles/{cycleId}").hasAnyRole(ROLE_ADMINISTRATOR)
+                .antMatchers(HttpMethod.POST, "/api/sinic/v1/cycles").hasAnyRole(ROLE_ADMINISTRATOR)
+
+                .antMatchers(HttpMethod.POST, "/api/sinic/v1/cycles/{cycleId}/periods").hasAnyRole(ROLE_ADMINISTRATOR)
 
                 /*
                  * Services V2
